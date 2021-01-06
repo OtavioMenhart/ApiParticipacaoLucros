@@ -71,5 +71,17 @@ namespace ApiParticipacaoLucros.Data.Repositories.Funcionario
             }
         }
 
+        public async Task<Dictionary<string, FuncionarioDto>> ObterTodos()
+        {
+            try
+            {
+                Dictionary<string, FuncionarioDto> resultado = await GetAllFirebaseAsync("Funcionarios/");
+                return resultado;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

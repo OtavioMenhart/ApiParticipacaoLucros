@@ -1,4 +1,6 @@
-﻿using ApiParticipacaoLucros.Domain.Interfaces.Services.Funcionario;
+﻿using ApiParticipacaoLucros.Domain.Interfaces.Services.Distribuicao;
+using ApiParticipacaoLucros.Domain.Interfaces.Services.Funcionario;
+using ApiParticipacaoLucros.Service.Services.Distribuicao;
 using ApiParticipacaoLucros.Service.Services.Funcionario;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -12,6 +14,7 @@ namespace ApiParticipacaoLucros.CrossCutting.DependencyInjection
         public static void ConfigureDependenciesService(IServiceCollection serviceCollection)
         {
             serviceCollection.AddTransient<IFuncionarioService, FuncionarioService>();
+            serviceCollection.AddTransient<IDistribuicaoService, DistribuicaoService>();
         }
     }
 }

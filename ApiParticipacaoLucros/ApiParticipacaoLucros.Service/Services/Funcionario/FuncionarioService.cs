@@ -59,7 +59,6 @@ namespace ApiParticipacaoLucros.Service.Services.Funcionario
                 if (funcionarios.Count == 0)
                     return true;
                 bool resultadoInsert = await _funcionarioRepository.InserirInformacoes(funcionarios);
-
                 return resultadoInsert;
             }
             catch (Exception)
@@ -81,5 +80,33 @@ namespace ApiParticipacaoLucros.Service.Services.Funcionario
             }
         }
 
+        public async Task<List<FuncionarioDto>> ObterTodos()
+        {
+            try
+            {
+                Dictionary<string, FuncionarioDto> funcionarios = await _funcionarioRepository.ObterTodos();
+                List<FuncionarioDto> funcionariosCadastrados = new List<FuncionarioDto>();
+                if (funcionarios is null)
+                    return null;
+                foreach (var funcionario in funcionarios)
+                {
+                    funcionariosCadastrados.Add(new FuncionarioDto
+                    {
+                        matricula = funcionario.Value.matricula,
+                        nome = funcionario.Value.nome,
+                        area = funcionario.Value.area,
+                        cargo = funcionario.Value.cargo,
+                        salario_bruto = funcionario.Value.salario_bruto,
+                        data_de_admissao = funcionario.Value.data_de_admissao
+                    });
+                }
+
+                return funcionariosCadastrados;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

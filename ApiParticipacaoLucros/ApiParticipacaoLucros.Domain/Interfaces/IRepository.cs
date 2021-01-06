@@ -11,5 +11,6 @@ namespace ApiParticipacaoLucros.Domain.Interfaces
         Task<T> GetFirebaseAsync(string path);
         Task<T> UpdateFirebaseAsync(string path, T item);
         Task<bool> DeleteFirebaseAsync(string path);
+        Task<Dictionary<string, T>> GetAllFirebaseAsync(string path);
     }
 }

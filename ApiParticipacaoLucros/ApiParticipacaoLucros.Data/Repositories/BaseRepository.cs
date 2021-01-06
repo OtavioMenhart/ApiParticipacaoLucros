@@ -83,5 +83,24 @@ namespace ApiParticipacaoLucros.Data.Repositories
                 throw;
             }
         }
+
+        public async Task<Dictionary<string, T>> GetAllFirebaseAsync(string path)
+        {
+            try
+            {
+                FirebaseResponse response = await _client.GetTaskAsync(path);
+                if (response.Body != "null")
+                {
+                    Dictionary<string, T> result = response.ResultAs<Dictionary<string, T>>();
+                    return result;
+                }
+                else
+                    return null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -127,5 +127,26 @@ namespace ApiParticipacaoLucros.Application.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+
+        [HttpGet]
+        public async Task<ActionResult> ObterTodos()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                List<FuncionarioDto> funcionarios = await _funcionarioService.ObterTodos();
+                if (funcionarios != null)
+                    return Ok(funcionarios);
+                else
+                    return BadRequest("Sem usuários cadastrados");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
     }
 }

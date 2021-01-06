@@ -12,5 +12,6 @@ namespace ApiParticipacaoLucros.Domain.Repositories.Funcionario
         Task<FuncionarioDto> ObterPorMatricula(string matricula);
         Task<FuncionarioDto> AtualizarFuncionario(FuncionarioDto funcionario);
         Task<bool> Deletar(string matricula = "");
+        Task<Dictionary<string, FuncionarioDto>> ObterTodos();
     }
 }
