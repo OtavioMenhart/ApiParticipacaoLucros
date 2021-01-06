@@ -11,5 +11,6 @@ namespace ApiParticipacaoLucros.Domain.Dtos
         public string total_distribuido { get; set; }
         public string total_disponibilizado { get; set; }
         public string saldo_total_disponibilizado { get; set; }
+        public DateTime data_calculo { get; set; }
     }
 }

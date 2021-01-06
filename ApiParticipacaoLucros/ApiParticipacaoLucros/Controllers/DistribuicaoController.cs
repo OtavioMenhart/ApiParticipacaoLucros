@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ApiParticipacaoLucros.Domain.Dtos;
+using ApiParticipacaoLucros.Domain.Interfaces.Services.Distribuicao;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,6 +14,12 @@ namespace ApiParticipacaoLucros.Application.Controllers
     [ApiController]
     public class DistribuicaoController : ControllerBase
     {
+        private IDistribuicaoService _distribuicaoService;
+
+        public DistribuicaoController(IDistribuicaoService distribuicaoService)
+        {
+            _distribuicaoService = distribuicaoService;
+        }
 
         [HttpGet]
         public async Task<ActionResult> ObterDistribuicaoLucros(decimal valor)
@@ -22,7 +30,11 @@ namespace ApiParticipacaoLucros.Application.Controllers
             }
             try
             {
-                return Ok();
+                ParticipacoesDto participacoes = await _distribuicaoService.ObterDistribuicaoLucros(valor);
+                if (participacoes is null)
+                    return BadRequest("Não há funcionários para base de cálculo");
+                else
+                    return Ok(participacoes);
             }
             catch (Exception ex)
             {
