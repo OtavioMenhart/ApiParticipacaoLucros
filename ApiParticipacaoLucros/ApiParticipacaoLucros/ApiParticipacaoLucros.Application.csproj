@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApiParticipacaoLucros.CrossCutting\ApiParticipacaoLucros.CrossCutting.csproj" />
+    <ProjectReference Include="..\ApiParticipacaoLucros.Domain\ApiParticipacaoLucros.Domain.csproj" />
+    <ProjectReference Include="..\ApiParticipacaoLucros.Service\ApiParticipacaoLucros.Service.csproj" />
+  </ItemGroup>
+
+
+</Project>

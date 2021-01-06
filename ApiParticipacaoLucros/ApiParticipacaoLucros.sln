@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30717.126
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiParticipacaoLucros.Application", "ApiParticipacaoLucros\ApiParticipacaoLucros.Application.csproj", "{29AAB1B5-E62C-4C3A-B08B-D28E3907CA1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiParticipacaoLucros.CrossCutting", "ApiParticipacaoLucros.CrossCutting\ApiParticipacaoLucros.CrossCutting.csproj", "{98D21CBA-7AEE-4A32-BB3C-5C7564AB5B76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiParticipacaoLucros.Data", "ApiParticipacaoLucros.Data\ApiParticipacaoLucros.Data.csproj", "{7A1FC2AB-924A-4D1F-8795-0934926FAF76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiParticipacaoLucros.Domain", "ApiParticipacaoLucros.Domain\ApiParticipacaoLucros.Domain.csproj", "{FB85F8AD-608F-40A5-AC65-A3A966C740B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiParticipacaoLucros.Service", "ApiParticipacaoLucros.Service\ApiParticipacaoLucros.Service.csproj", "{7631FBA1-8533-4EA8-A0E9-34D8BD3FB992}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{29AAB1B5-E62C-4C3A-B08B-D28E3907CA1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29AAB1B5-E62C-4C3A-B08B-D28E3907CA1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29AAB1B5-E62C-4C3A-B08B-D28E3907CA1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29AAB1B5-E62C-4C3A-B08B-D28E3907CA1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98D21CBA-7AEE-4A32-BB3C-5C7564AB5B76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98D21CBA-7AEE-4A32-BB3C-5C7564AB5B76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98D21CBA-7AEE-4A32-BB3C-5C7564AB5B76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98D21CBA-7AEE-4A32-BB3C-5C7564AB5B76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A1FC2AB-924A-4D1F-8795-0934926FAF76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A1FC2AB-924A-4D1F-8795-0934926FAF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A1FC2AB-924A-4D1F-8795-0934926FAF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A1FC2AB-924A-4D1F-8795-0934926FAF76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB85F8AD-608F-40A5-AC65-A3A966C740B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB85F8AD-608F-40A5-AC65-A3A966C740B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB85F8AD-608F-40A5-AC65-A3A966C740B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB85F8AD-608F-40A5-AC65-A3A966C740B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7631FBA1-8533-4EA8-A0E9-34D8BD3FB992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7631FBA1-8533-4EA8-A0E9-34D8BD3FB992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7631FBA1-8533-4EA8-A0E9-34D8BD3FB992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7631FBA1-8533-4EA8-A0E9-34D8BD3FB992}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5C7FD2EE-D156-4A5B-B276-0C5D5400EE74}
+	EndGlobalSection
+EndGlobal
