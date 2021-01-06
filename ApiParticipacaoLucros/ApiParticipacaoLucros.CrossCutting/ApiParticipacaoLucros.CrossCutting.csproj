@@ -4,4 +4,14 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ApiParticipacaoLucros.Data\ApiParticipacaoLucros.Data.csproj" />
+    <ProjectReference Include="..\ApiParticipacaoLucros.Domain\ApiParticipacaoLucros.Domain.csproj" />
+    <ProjectReference Include="..\ApiParticipacaoLucros.Service\ApiParticipacaoLucros.Service.csproj" />
+  </ItemGroup>
+
 </Project>
