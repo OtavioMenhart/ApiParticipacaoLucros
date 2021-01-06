@@ -1,6 +1,7 @@
 ﻿using ApiParticipacaoLucros.Domain.Dtos;
 using ApiParticipacaoLucros.Domain.Interfaces.Services.Distribuicao;
 using ApiParticipacaoLucros.Domain.Interfaces.Services.Funcionario;
+using ApiParticipacaoLucros.Domain.Interfaces.Services.SalarioMinimo;
 using ApiParticipacaoLucros.Domain.Repositories.Distribuicao;
 using ApiParticipacaoLucros.Domain.Repositories.Funcionario;
 using Newtonsoft.Json.Linq;
@@ -17,11 +18,13 @@ namespace ApiParticipacaoLucros.Service.Services.Distribuicao
     {
         private IFuncionarioService _funcionarioService;
         private IDistribuicaoRepository _distribuicaoRepository;
+        private ISalarioMinimoService _salarioMinimoService;
 
-        public DistribuicaoService(IFuncionarioService funcionarioService, IDistribuicaoRepository distribuicaoRepository)
+        public DistribuicaoService(IFuncionarioService funcionarioService, IDistribuicaoRepository distribuicaoRepository, ISalarioMinimoService salarioMinimoService)
         {
             _funcionarioService = funcionarioService;
             _distribuicaoRepository = distribuicaoRepository;
+            _salarioMinimoService = salarioMinimoService;
         }
 
         public async Task<ParticipacoesDto> ObterDistribuicaoLucros(decimal valor)
@@ -35,15 +38,16 @@ namespace ApiParticipacaoLucros.Service.Services.Distribuicao
                 List<FuncionarioPLRDto> funcionarioPLR = new List<FuncionarioPLRDto>();
                 decimal totalDistribuido = 0;
 
+                decimal salarioMinimo = _salarioMinimoService.ObterSalarioMinimoAtual();
                 foreach (FuncionarioDto funcionario in funcionarios)
                 {
                     decimal sb = decimal.Parse(funcionario.salario_bruto, System.Globalization.NumberStyles.Currency);
 
                     int paa = RetornarPesoArea(funcionario.area);
-                    int pfs = RetornarPesoFaixaSalarial(sb);
+                    int pfs = RetornarPesoFaixaSalarial(sb, salarioMinimo);
                     int pta = RetornarPesoTempoAdmissao(funcionario.data_de_admissao);
 
-                    decimal valorPlr = ((sb * pta) + (sb * paa) / pfs) * 12;
+                    decimal valorPlr = (((sb * pta) + (sb * paa)) / pfs) * 12;
 
                     funcionarioPLR.Add(new FuncionarioPLRDto
                     {
@@ -58,12 +62,13 @@ namespace ApiParticipacaoLucros.Service.Services.Distribuicao
                 ParticipacoesDto participacoes = new ParticipacoesDto
                 {
                     participacoes = funcionarioPLR,
-                    data_calculo = DateTime.UtcNow,
-                    total_de_funcionarios = funcionarioPLR.Count,
+                    total_de_funcionarios = funcionarioPLR.Count.ToString(),
                     total_disponibilizado = valor.ToString("C"),
                     total_distribuido = totalDistribuido.ToString("C"),
                     saldo_total_disponibilizado = Math.Round(valor - totalDistribuido, 2).ToString("C")
                 };
+
+                await _distribuicaoRepository.GravarLogGravacao(participacoes);
 
                 return participacoes;
             }
@@ -100,15 +105,21 @@ namespace ApiParticipacaoLucros.Service.Services.Distribuicao
             return peso;
         }
 
-        public int RetornarPesoFaixaSalarial(decimal salarioBruto)
+        public int RetornarPesoFaixaSalarial(decimal salarioBruto, decimal salarioMinimo)
         {
             int peso = 0;
-            decimal salarioMinimo = 1100;
 
             if (salarioBruto <= salarioMinimo * 3)
                 return 1;
 
-            int calculoFaixa = Convert.ToInt32(Math.Ceiling(salarioBruto / salarioMinimo));
+            decimal divisao = Math.Round(salarioBruto / salarioMinimo, 2);
+            int valorAcima = Convert.ToInt32(Math.Ceiling(divisao));
+            int valorAbaixo = Convert.ToInt32(Math.Floor(divisao));
+
+            decimal comparativoAcima = valorAcima - divisao;
+            decimal comparativoAbaixo = divisao - valorAbaixo;
+
+            int calculoFaixa = Convert.ToInt32(comparativoAcima <= comparativoAbaixo ? valorAcima : valorAbaixo);
 
             switch (calculoFaixa)
             {

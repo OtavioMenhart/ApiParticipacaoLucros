@@ -22,28 +22,6 @@ namespace ApiParticipacaoLucros.Application.Controllers
             _funcionarioService = funcionarioService;
         }
 
-        [HttpPost]
-        public async Task<ActionResult> InserirInformacoes([FromBody] List<FuncionarioDto> listaFuncionarios)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            try
-            {
-                bool resultadoInsercao = await _funcionarioService.InserirInformacoes(listaFuncionarios);
-
-                if (resultadoInsercao)
-                    return StatusCode((int)HttpStatusCode.Created, "Sucesso");
-                else
-                    return BadRequest("Erro ao inserir informações");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
-            }
-        }
-
         [HttpGet]
         public async Task<ActionResult> ObterPorMatricula(string matricula)
         {
@@ -64,6 +42,49 @@ namespace ApiParticipacaoLucros.Application.Controllers
                 return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
             }
         }
+
+        [HttpGet]
+        public async Task<ActionResult> ObterTodos()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                List<FuncionarioDto> funcionarios = await _funcionarioService.ObterTodos();
+                if (funcionarios != null)
+                    return Ok(funcionarios);
+                else
+                    return BadRequest("Sem usuários cadastrados");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> InserirInformacoes([FromBody] List<FuncionarioDto> listaFuncionarios)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            try
+            {
+                bool resultadoInsercao = await _funcionarioService.InserirInformacoes(listaFuncionarios);
+
+                if (resultadoInsercao)
+                    return StatusCode((int)HttpStatusCode.Created, "Sucesso");
+                else
+                    return BadRequest("Erro ao inserir informações");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }        
 
         [HttpPut]
         public async Task<ActionResult> AtualizarFuncionario([FromBody] FuncionarioDto funcionario)
@@ -128,25 +149,6 @@ namespace ApiParticipacaoLucros.Application.Controllers
             }
         }
 
-        [HttpGet]
-        public async Task<ActionResult> ObterTodos()
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            try
-            {
-                List<FuncionarioDto> funcionarios = await _funcionarioService.ObterTodos();
-                if (funcionarios != null)
-                    return Ok(funcionarios);
-                else
-                    return BadRequest("Sem usuários cadastrados");
-            }
-            catch (Exception ex)
-            {
-                return StatusCode((int)HttpStatusCode.InternalServerError, ex.Message);
-            }
-        }
+        
     }
 }

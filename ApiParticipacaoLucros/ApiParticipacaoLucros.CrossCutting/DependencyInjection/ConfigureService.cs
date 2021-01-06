@@ -1,7 +1,9 @@
 ﻿using ApiParticipacaoLucros.Domain.Interfaces.Services.Distribuicao;
 using ApiParticipacaoLucros.Domain.Interfaces.Services.Funcionario;
+using ApiParticipacaoLucros.Domain.Interfaces.Services.SalarioMinimo;
 using ApiParticipacaoLucros.Service.Services.Distribuicao;
 using ApiParticipacaoLucros.Service.Services.Funcionario;
+using ApiParticipacaoLucros.Service.Services.SalarioMinimo;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,8 @@ namespace ApiParticipacaoLucros.CrossCutting.DependencyInjection
         {
             serviceCollection.AddTransient<IFuncionarioService, FuncionarioService>();
             serviceCollection.AddTransient<IDistribuicaoService, DistribuicaoService>();
+            serviceCollection.AddTransient<ISalarioMinimoService, SalarioMinimoService>();
+            
         }
     }
 }

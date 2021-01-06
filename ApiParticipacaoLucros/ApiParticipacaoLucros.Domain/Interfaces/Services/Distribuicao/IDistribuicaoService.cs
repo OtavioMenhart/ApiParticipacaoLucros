@@ -10,7 +10,7 @@ namespace ApiParticipacaoLucros.Domain.Interfaces.Services.Distribuicao
     {
         Task<ParticipacoesDto> ObterDistribuicaoLucros(decimal valor);
         int RetornarPesoArea(string area);
-        int RetornarPesoFaixaSalarial(decimal salarioBruto);
+        int RetornarPesoFaixaSalarial(decimal salarioBruto, decimal salarioMinimo);
         int RetornarPesoTempoAdmissao(DateTime dataAdmissao);
     }
 }
