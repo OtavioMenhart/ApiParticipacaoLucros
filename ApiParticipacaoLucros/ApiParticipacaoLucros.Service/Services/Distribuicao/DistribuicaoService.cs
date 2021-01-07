@@ -145,10 +145,10 @@ namespace ApiParticipacaoLucros.Service.Services.Distribuicao
 
             switch (tempo)
             {
-                case 0:
+                case int i when i == 0 || i == 1:
                     peso = 1;
                     break;
-                case int i when i >= 1 && i < 3:
+                case int i when i > 1 && i < 3:
                     peso = 2;
                     break;
                 case int i when i >= 3 && i < 8:

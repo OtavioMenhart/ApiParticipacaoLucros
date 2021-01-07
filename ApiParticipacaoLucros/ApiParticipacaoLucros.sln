@@ -3,15 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiParticipacaoLucros.Application", "ApiParticipacaoLucros\ApiParticipacaoLucros.Application.csproj", "{29AAB1B5-E62C-4C3A-B08B-D28E3907CA1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiParticipacaoLucros.Application", "ApiParticipacaoLucros\ApiParticipacaoLucros.Application.csproj", "{29AAB1B5-E62C-4C3A-B08B-D28E3907CA1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiParticipacaoLucros.CrossCutting", "ApiParticipacaoLucros.CrossCutting\ApiParticipacaoLucros.CrossCutting.csproj", "{98D21CBA-7AEE-4A32-BB3C-5C7564AB5B76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiParticipacaoLucros.CrossCutting", "ApiParticipacaoLucros.CrossCutting\ApiParticipacaoLucros.CrossCutting.csproj", "{98D21CBA-7AEE-4A32-BB3C-5C7564AB5B76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiParticipacaoLucros.Data", "ApiParticipacaoLucros.Data\ApiParticipacaoLucros.Data.csproj", "{7A1FC2AB-924A-4D1F-8795-0934926FAF76}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiParticipacaoLucros.Data", "ApiParticipacaoLucros.Data\ApiParticipacaoLucros.Data.csproj", "{7A1FC2AB-924A-4D1F-8795-0934926FAF76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiParticipacaoLucros.Domain", "ApiParticipacaoLucros.Domain\ApiParticipacaoLucros.Domain.csproj", "{FB85F8AD-608F-40A5-AC65-A3A966C740B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiParticipacaoLucros.Domain", "ApiParticipacaoLucros.Domain\ApiParticipacaoLucros.Domain.csproj", "{FB85F8AD-608F-40A5-AC65-A3A966C740B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiParticipacaoLucros.Service", "ApiParticipacaoLucros.Service\ApiParticipacaoLucros.Service.csproj", "{7631FBA1-8533-4EA8-A0E9-34D8BD3FB992}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiParticipacaoLucros.Service", "ApiParticipacaoLucros.Service\ApiParticipacaoLucros.Service.csproj", "{7631FBA1-8533-4EA8-A0E9-34D8BD3FB992}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testes", "Testes", "{0C791D2B-611B-4BE9-8995-E1920FB30010}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Data.Test", "Testes\Api.Data.Test\Api.Data.Test.csproj", "{F73C1CDE-23A6-48D8-8673-8A248E3DABD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +43,16 @@ Global
 		{7631FBA1-8533-4EA8-A0E9-34D8BD3FB992}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7631FBA1-8533-4EA8-A0E9-34D8BD3FB992}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7631FBA1-8533-4EA8-A0E9-34D8BD3FB992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F73C1CDE-23A6-48D8-8673-8A248E3DABD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F73C1CDE-23A6-48D8-8673-8A248E3DABD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F73C1CDE-23A6-48D8-8673-8A248E3DABD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F73C1CDE-23A6-48D8-8673-8A248E3DABD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F73C1CDE-23A6-48D8-8673-8A248E3DABD4} = {0C791D2B-611B-4BE9-8995-E1920FB30010}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5C7FD2EE-D156-4A5B-B276-0C5D5400EE74}
