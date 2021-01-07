@@ -22,6 +22,7 @@ namespace ApiParticipacaoLucros.Application.Controllers
         }
 
         [HttpGet]
+        [Route("{valor}", Name = "ObterDistribuicaoLucros")]
         public async Task<ActionResult> ObterDistribuicaoLucros(decimal valor)
         {
             if (!ModelState.IsValid)

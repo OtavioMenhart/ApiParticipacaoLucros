@@ -23,6 +23,7 @@ namespace ApiParticipacaoLucros.Application.Controllers
         }
 
         [HttpGet]
+        [Route("{matricula}", Name = "ObterPorMatricula")]
         public async Task<ActionResult> ObterPorMatricula(string matricula)
         {
             if (!ModelState.IsValid)
@@ -108,6 +109,7 @@ namespace ApiParticipacaoLucros.Application.Controllers
         }
     
         [HttpDelete]
+        [Route("{matricula}", Name = "DeletarFuncionarioPorMatricula")]
         public async Task<ActionResult> DeletarFuncionarioPorMatricula(string matricula)
         {
             if (!ModelState.IsValid)
