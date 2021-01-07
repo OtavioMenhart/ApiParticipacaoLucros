@@ -1,5 +1,8 @@
 # ApiParticipacaoLucros
 
+Para essa solução, utilizei o [.NET Core 3.1](https://dotnet.microsoft.com/download/dotnet-core/3.1), apliquei também o [Swagger](https://swagger.io/) para facilitar a utilização e documentação.
+
+Abaixo coloquei o passo a passo para teste, aproveite:
 - Verifique se o banco está vazio, executando o GET ObterTodos
 - Fique a vontade, pode deletar todos executando o DELETE DeletarTodos
 - Pronto, banco zerado ;)
@@ -13,6 +16,8 @@ Pronto, agora você já testou tudo sobre os funcionários!
 
 Hora de calcular a PLR $$
 - Execute o GET Distribuicao/ObterDistribuicaoLucros, e passe um valor (seja generoso haha)
+
+Para rodar os testes, troque a conexão no FirebaseContext.
 
 - [x] Código no GitHub
 - [x] .Net Core
