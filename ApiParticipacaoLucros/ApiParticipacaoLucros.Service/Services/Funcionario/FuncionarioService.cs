@@ -39,9 +39,10 @@ namespace ApiParticipacaoLucros.Service.Services.Funcionario
             {
                 if(matricula != "")
                 {
-                    if (await _funcionarioRepository.ObterPorMatricula(matricula) == null)
+                    string matriculaAjustada = matricula.PadLeft(7, '0');
+                    if (await _funcionarioRepository.ObterPorMatricula(matriculaAjustada) == null)
                         return false;
-                    return await _funcionarioRepository.Deletar(matricula);
+                    return await _funcionarioRepository.Deletar(matriculaAjustada);
                 }
                 return await _funcionarioRepository.Deletar();
                 
@@ -71,7 +72,7 @@ namespace ApiParticipacaoLucros.Service.Services.Funcionario
         {
             try
             {
-                FuncionarioDto funcionario = await _funcionarioRepository.ObterPorMatricula(matricula);
+                FuncionarioDto funcionario = await _funcionarioRepository.ObterPorMatricula(matricula.PadLeft(7, '0'));
                 return funcionario;
             }
             catch (Exception)

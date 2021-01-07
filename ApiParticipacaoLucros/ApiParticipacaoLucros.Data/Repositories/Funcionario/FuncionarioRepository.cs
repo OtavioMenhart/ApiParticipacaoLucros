@@ -46,6 +46,9 @@ namespace ApiParticipacaoLucros.Data.Repositories.Funcionario
             {
                 foreach (FuncionarioDto funcionario in funcionarios)
                 {
+                    FuncionarioDto verificacao = await ObterPorMatricula(funcionario.matricula);
+                    if (verificacao != null)
+                        continue;
                     FuncionarioDto result = await InsertFirebaseAsync("Funcionarios/" + funcionario.matricula, funcionario);
                     if (result is null)
                         return false;
