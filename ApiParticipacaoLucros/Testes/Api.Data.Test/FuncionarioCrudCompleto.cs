@@ -25,7 +25,7 @@ namespace Api.Data.Test
                     area = "Contabilidade",
                     cargo = "Auxiliar Administrativo",
                     data_de_admissao = DateTime.UtcNow.AddMonths(-new Random().Next(180)),
-                    matricula = new Random().Next(15000).ToString(),
+                    matricula = new Random().Next(9999999).ToString().PadLeft(7, '0'),
                     salario_bruto = Convert.ToDecimal(new Random().Next(1100, 20000)).ToString("C")
                 },
                 new FuncionarioDto
@@ -34,7 +34,7 @@ namespace Api.Data.Test
                     area = "Financeiro",
                     cargo = "Analista de Finanças",
                     data_de_admissao = DateTime.UtcNow.AddMonths(-new Random().Next(180)),
-                    matricula = new Random().Next(15000).ToString(),
+                    matricula = new Random().Next(9999999).ToString().PadLeft(7, '0'),
                     salario_bruto = Convert.ToDecimal(new Random().Next(1100, 20000)).ToString("C")
                 },
 

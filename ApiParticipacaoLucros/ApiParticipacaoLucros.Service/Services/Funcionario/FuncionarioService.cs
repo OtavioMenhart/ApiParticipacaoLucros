@@ -24,6 +24,7 @@ namespace ApiParticipacaoLucros.Service.Services.Funcionario
                 if (await _funcionarioRepository.ObterPorMatricula(funcionario.matricula) == null)
                     return null;
 
+                funcionario.matricula = funcionario.matricula.PadLeft(7, '0');
                 FuncionarioDto funcionarioAtualizado = await _funcionarioRepository.AtualizarFuncionario(funcionario);
                 return funcionarioAtualizado;
             }

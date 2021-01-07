@@ -27,13 +27,13 @@ namespace ApiParticipacaoLucros.Service.Services.Distribuicao
             _salarioMinimoService = salarioMinimoService;
         }
 
-        public async Task<ParticipacoesDto> ObterDistribuicaoLucros(decimal valor)
+        public async Task<object> ObterDistribuicaoLucros(decimal valor)
         {
             try
             {
                 List<FuncionarioDto> funcionarios = await _funcionarioService.ObterTodos();
                 if (funcionarios is null)
-                    return null;
+                    return new { erro = "Não há funcionários para base de cálculo" };
 
                 List<FuncionarioPLRDto> funcionarioPLR = new List<FuncionarioPLRDto>();
                 decimal totalDistribuido = 0;
@@ -56,7 +56,12 @@ namespace ApiParticipacaoLucros.Service.Services.Distribuicao
                         valor_da_participação = valorPlr.ToString("C")
                     });
 
-                    totalDistribuido += valorPlr;
+                    totalDistribuido += valorPlr;                    
+                }
+
+                if (totalDistribuido > valor)
+                {
+                    return new { erro = $"Valor {valor.ToString("C")} insuficiente, no mínimo o valor disponibilizado precisa ser {totalDistribuido.ToString("C")}" };
                 }
 
                 ParticipacoesDto participacoes = new ParticipacoesDto

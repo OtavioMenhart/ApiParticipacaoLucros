@@ -49,6 +49,8 @@ namespace ApiParticipacaoLucros.Data.Repositories.Funcionario
                     FuncionarioDto verificacao = await ObterPorMatricula(funcionario.matricula);
                     if (verificacao != null)
                         continue;
+
+                    funcionario.matricula = funcionario.matricula.PadLeft(7, '0');
                     FuncionarioDto result = await InsertFirebaseAsync("Funcionarios/" + funcionario.matricula, funcionario);
                     if (result is null)
                         return false;

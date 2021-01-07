@@ -31,11 +31,12 @@ namespace ApiParticipacaoLucros.Application.Controllers
             }
             try
             {
-                ParticipacoesDto participacoes = await _distribuicaoService.ObterDistribuicaoLucros(valor);
-                if (participacoes is null)
-                    return BadRequest("Não há funcionários para base de cálculo");
+                object participacoes = await _distribuicaoService.ObterDistribuicaoLucros(valor);
+                if (participacoes is ParticipacoesDto)
+                    return Ok(participacoes);                
                 else
-                    return Ok(participacoes);
+                    return BadRequest(participacoes);
+
             }
             catch (Exception ex)
             {

@@ -26,7 +26,7 @@ namespace Api.Application.Test.Distribuicao
              {
                  new FuncionarioPLRDto
                  {
-                     matricula = new Random().Next(15000).ToString(),
+                     matricula = new Random().Next(9999999).ToString().PadLeft(7, '0'),
                      nome = Faker.Name.FullName(),
                      valor_da_participação = Convert.ToDecimal(new Random().Next(80000, 100000)).ToString("C")
                  }

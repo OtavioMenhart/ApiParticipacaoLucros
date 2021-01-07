@@ -1,32 +1,20 @@
 ﻿using ApiParticipacaoLucros.Domain.Dtos;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
+using System.Threading.Tasks;
+using Xunit;
 
-namespace Api.Service.Test.Funcionario
+namespace Api.Integration.Test.PLR
 {
-    public class FuncionarioTestes
+    public class QuandoRequisitarDistribuicao : BaseIntegration
     {
-        public string matricula { get; set; }
-        public string nome { get; set; }
-        public string area { get; set; }
-        public string cargo { get; set; }
-        public string salario_bruto { get; set; }
-        public DateTime data_de_admissao { get; set; }
-
-        public string areaAlterado { get; set; }
-        public string cargoAlterado { get; set; }
-
-
-        public List<FuncionarioDto> listaFuncionarios = new List<FuncionarioDto>();
-        public FuncionarioDto funcionarioAtualizar;
-        public FuncionarioDto funcionarioAtualizado;
-        public FuncionarioDto funcionarioObtido;
-
-        public FuncionarioTestes()
+        [Fact(DisplayName = "É possível requisitar o cálculo de PLR"), ]
+        public async Task E_Possivel_Requisitar_Calculo_PLR()
         {
-
-            listaFuncionarios = new List<FuncionarioDto>()
+            List<FuncionarioDto> listaFuncionarios = new List<FuncionarioDto>()
             {
                 new FuncionarioDto
                 {
@@ -57,27 +45,18 @@ namespace Api.Service.Test.Funcionario
                 },
             };
 
-            areaAlterado = "Relacionamento com o Cliente";
-            cargoAlterado = "Líder de Relacionamento";
+            //Post
+            var response = await PostJsonAsync(listaFuncionarios, $"{hostApi}Funcionario/InserirInformacoes", client);
+            var postResult = await response.Content.ReadAsStringAsync();
+            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
 
-            funcionarioAtualizar = new FuncionarioDto
-            {
-                nome = Faker.Name.FullName(),
-                area = areaAlterado,
-                cargo = cargoAlterado,
-                data_de_admissao = DateTime.UtcNow.AddMonths(-new Random().Next(180)),
-                matricula = listaFuncionarios[0].matricula,
-                salario_bruto = Convert.ToDecimal(new Random().Next(1100, 20000)).ToString("C"),
-            };
+            //Get simulacao
+            var responseSimulacao = await client.GetAsync($"{hostApi}Distribuicao/ObterDistribuicaoLucros/2000000");
+            Assert.Equal(HttpStatusCode.OK, responseSimulacao.StatusCode);
+            var jsonResult = await responseSimulacao.Content.ReadAsStringAsync();
+            var retornoFormatado = JsonConvert.DeserializeObject<ParticipacoesDto>(jsonResult);
+            Assert.NotNull(retornoFormatado);
 
-            funcionarioAtualizado = new FuncionarioDto
-            {
-                area = areaAlterado,
-                cargo = cargoAlterado,
-                matricula = listaFuncionarios[0].matricula
-            };
-
-            funcionarioObtido = listaFuncionarios[0];
         }
     }
 }

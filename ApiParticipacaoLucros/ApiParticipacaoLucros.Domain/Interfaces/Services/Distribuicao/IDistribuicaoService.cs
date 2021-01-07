@@ -8,7 +8,7 @@ namespace ApiParticipacaoLucros.Domain.Interfaces.Services.Distribuicao
 {
     public interface IDistribuicaoService
     {
-        Task<ParticipacoesDto> ObterDistribuicaoLucros(decimal valor);
+        Task<object> ObterDistribuicaoLucros(decimal valor);
         int RetornarPesoArea(string area);
         int RetornarPesoFaixaSalarial(decimal salarioBruto, decimal salarioMinimo);
         int RetornarPesoTempoAdmissao(DateTime dataAdmissao);
