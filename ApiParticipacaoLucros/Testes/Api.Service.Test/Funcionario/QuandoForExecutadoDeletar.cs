@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
+
 namespace Api.Service.Test.Funcionario
 {
     public class QuandoForExecutadoDeletar : FuncionarioTestes

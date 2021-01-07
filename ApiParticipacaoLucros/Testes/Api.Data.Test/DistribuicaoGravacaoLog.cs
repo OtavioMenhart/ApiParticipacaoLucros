@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
+
 namespace Api.Data.Test
 {
     public class DistribuicaoGravacaoLog

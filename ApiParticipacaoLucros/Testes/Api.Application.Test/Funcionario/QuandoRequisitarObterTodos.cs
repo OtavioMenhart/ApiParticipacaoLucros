@@ -1,5 +1,7 @@
-﻿using ApiParticipacaoLucros.Domain.Dtos;
+﻿using ApiParticipacaoLucros.Application.Controllers;
+using ApiParticipacaoLucros.Domain.Dtos;
 using ApiParticipacaoLucros.Domain.Interfaces.Services.Funcionario;
+using Microsoft.AspNetCore.Mvc;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -8,18 +10,18 @@ using System.Threading.Tasks;
 using Xunit;
 
 
-namespace Api.Service.Test.Funcionario
+namespace Api.Application.Test.Funcionario
 {
-    public class QuandoForExecutadoObterTodos
+    public class QuandoRequisitarObterTodos
     {
-        private IFuncionarioService _service;
-        private Mock<IFuncionarioService> _serviceMock;
+        private FuncionarioController _controller;
 
-        [Fact(DisplayName = "É possível obter todos os funcionários")]
-        public async Task E_Possivel_Obter_Todos_Funcionarios()
+        [Fact(DisplayName = "É possível requisitar funcionarios")]
+        public async Task E_Possivel_Requisitar_Funcionarios()
         {
-            _serviceMock = new Mock<IFuncionarioService>();
-            _serviceMock.Setup(x => x.ObterTodos()).ReturnsAsync(new List<FuncionarioDto>()
+            var serviceMock = new Mock<IFuncionarioService>();
+
+            serviceMock.Setup(x => x.ObterTodos()).ReturnsAsync(new List<FuncionarioDto>
             {
                 new FuncionarioDto
                 {
@@ -38,14 +40,15 @@ namespace Api.Service.Test.Funcionario
                     data_de_admissao = DateTime.UtcNow.AddMonths(-new Random().Next(180)),
                     matricula = new Random().Next(15000).ToString(),
                     salario_bruto = Convert.ToDecimal(new Random().Next(1100, 20000)).ToString("C")
-                } 
+                }
             });
-            _service = _serviceMock.Object;
 
-            var result = await _service.ObterTodos();
-            Assert.NotNull(result);
-            Assert.True(result.Count == 2);
+            _controller = new FuncionarioController(serviceMock.Object);
+            var result = await _controller.ObterTodos();
+            Assert.True(result is OkObjectResult);
 
+            var resultValue = ((OkObjectResult)result).Value as List<FuncionarioDto>;
+            Assert.True(resultValue.Count == 2);
         }
     }
 }
