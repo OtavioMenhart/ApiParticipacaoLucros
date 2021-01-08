@@ -17,6 +17,8 @@ Pronto, agora você já testou tudo sobre os funcionários!
 Hora de calcular a PLR $$
 - Execute o GET Distribuicao/ObterDistribuicaoLucros, e passe um valor (seja generoso haha)
 
+Aah, e a obtenção do salário mínimo é um raspa tela desse [link](http://www.guiatrabalhista.com.br/guia/salario_minimo.htm)
+
 Para rodar os testes, troque a conexão no FirebaseContext.
 
 - [x] Código no GitHub
