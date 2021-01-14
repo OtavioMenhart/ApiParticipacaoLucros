@@ -26,3 +26,9 @@ Para rodar os testes, troque a conexão no FirebaseContext.
 - [x] RestFull API
 - [x] Testes com XUnit
 - [x] Firebase
+
+## Docker
+
+Subi a aplicação no docker, para facilitar a execução, se encontra neste [link](https://hub.docker.com/r/otaviomenhart/apiplr)
+- Para executar: docker run --rm --name TesteOtavioMenhart -p 8787:80 otaviomenhart/apiplr:1.0
+- Abra seu navegador no endereço localhost:8787
